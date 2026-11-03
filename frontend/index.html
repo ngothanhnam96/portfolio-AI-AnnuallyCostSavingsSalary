@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tiết kiệm lương</title>
+  <link rel="icon" href="/favicon.ico" type="image/svg+xml">
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">₫</span>
+      <div>
+        <h1>Tiết kiệm lương</h1>
+        <p class="muted">Annual cost savings &amp; salary efficiency</p>
+      </div>
+    </div>
+    <div class="toolbar">
+      <label class="field inline">
+        <span>Tháng</span>
+        <input id="month" type="month" required>
+      </label>
+      <label class="button secondary" for="import-file">Import CSV / Excel</label>
+      <input id="import-file" type="file" hidden
+        accept=".csv,.xlsx,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+      <a id="export-link" class="button secondary" href="#">Export CSV</a>
+    </div>
+  </header>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <main>
+    <section class="kpis" id="kpis" aria-label="Tổng quan tháng"></section>
+
+    <div class="grid two">
+      <section class="card">
+        <div class="card-head">
+          <h2>Gợi ý tiết kiệm</h2>
+          <span class="muted small">Ước tính tác động theo năm</span>
+        </div>
+        <ul class="insights" id="insights"></ul>
+      </section>
+
+      <section class="card">
+        <div class="card-head">
+          <h2>Dự phóng năm <span id="projection-year"></span></h2>
+        </div>
+        <div id="projection"></div>
+        <h3>Nếu cắt giảm…</h3>
+        <p class="muted small">Dựa trên trung bình 3 tháng gần nhất.</p>
+        <div id="what-if" class="what-if"></div>
+        <p class="what-if-total" id="what-if-total"></p>
+      </section>
+    </div>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>Xu hướng 12 tháng</h2>
+        <div class="legend" id="trend-legend"></div>
+      </div>
+      <div class="chart" id="trend-chart"></div>
+      <details>
+        <summary>Xem dạng bảng</summary>
+        <div class="table-wrap" id="trend-table"></div>
+      </details>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>Bảng chi tiêu <span id="sheet-month"></span></h2>
+      </div>
+      <form id="tx-form" class="tx-form" autocomplete="off">
+        <label class="field"><span>Ngày</span><input name="date" type="date" required></label>
+        <label class="field grow"><span>Tên chi phí</span><input name="name" required maxlength="200" placeholder="VD: Đổ xăng"></label>
+        <label class="field"><span>Danh mục</span><select name="category" id="category-select" required></select></label>
+        <label class="field"><span>Số tiền (₫)</span><input name="amount" required inputmode="numeric" placeholder="80k, 1.5tr, 250000"></label>
+        <label class="field grow"><span>Ghi chú</span><input name="note" maxlength="500"></label>
+        <div class="form-actions">
+          <button type="submit" class="button" id="tx-submit">Thêm</button>
+          <button type="button" class="button secondary" id="tx-cancel" hidden>Huỷ</button>
+        </div>
+      </form>
+      <div class="table-wrap">
+        <table class="sheet" id="sheet"></table>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>Ngân sách tháng</h2>
+        <span class="muted small">Áp dụng từ tháng này trở đi</span>
+      </div>
+      <div class="budgets" id="budgets"></div>
+    </section>
+  </main>
+
+  <div class="tooltip" id="tooltip" hidden></div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
