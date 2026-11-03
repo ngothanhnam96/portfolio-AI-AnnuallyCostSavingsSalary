@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+.env
+.tmp/
+*.db
+*.sqlite
+*.egg-info/
+build/
+dist/
+# personal exports from the spending sheet
+*.csv
+!tests/**/*.csv

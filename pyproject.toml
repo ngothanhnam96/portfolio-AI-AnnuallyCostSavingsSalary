@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "portfolio-ai-annual-cost-savings"
+version = "0.1.0"
+description = "Salary efficiency tracker: monthly spending sheet, budgets, annual savings projection and rule-based advice."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "ngothanhnam96" }]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["app*"]

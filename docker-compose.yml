@@ -1,0 +1,15 @@
+services:
+  savings:
+    build: .
+    ports:
+      # Localhost only by default. Set SAVINGS_PASSWORD before exposing it on a network.
+      - "127.0.0.1:8000:8000"
+    environment:
+      - SAVINGS_USER=${SAVINGS_USER:-admin}
+      - SAVINGS_PASSWORD=${SAVINGS_PASSWORD:-}
+    volumes:
+      - savings-data:/data
+    restart: unless-stopped
+
+volumes:
+  savings-data:
